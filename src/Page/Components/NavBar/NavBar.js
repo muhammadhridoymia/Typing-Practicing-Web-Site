@@ -4,7 +4,7 @@ import './NavBar.css'
 function NavBar() {
   return (
     <div className='nav-bar'>
-        <h1>NavBar</h1>
+        <h1>Typing Test</h1>
         <div className='nav-links'>
             <a href='#'>TYPEING TEST</a>
             <a href='#'>LESSON</a>
