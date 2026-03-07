@@ -9,6 +9,7 @@ function NavBar() {
             <a href='#'>TYPEING TEST</a>
             <a href='#'>LESSON</a>
             <a href='#'>GAME</a>
+            <a href='#'>About</a>
         </div>
     </div>
   )

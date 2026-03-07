@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../Components/NavBar/NavBar";
 import Result from "../Components/Popup/Result";
 import "./Home.css";
-import paragraphs from "../../data/data";
+import englishParagraphs from "../../data/English";
+import banglaParagraphs from "../../data/Bangla";
+import chineseParagraphs from "../../data/Chinese";
+import koreanParagraphs from "../../data/Korean";
+
 function Home() {
-  const [text] = useState(
-    paragraphs[Math.floor(Math.random() * paragraphs.length)],
-  );
+
+  const [text,setText] = useState('')
   const [showPopup, setShowPopup] = useState(false);
   const [typedText, setTypedText] = useState("");
   const [incorrect, setIncorrect] = useState(0);
@@ -15,10 +18,35 @@ function Home() {
   const [wpm, setWpm] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
 
+
+  const handleLanguageChange = (e) => {
+  const language = e.target.value;
+
+  let selectedParagraphs = [];
+
+  if (language === "Bangla") {
+    selectedParagraphs = banglaParagraphs;
+  } 
+  else if (language === "English") {
+    selectedParagraphs = englishParagraphs;
+  } 
+  else if (language === "Chinese") {
+    selectedParagraphs = chineseParagraphs;
+  } 
+  else if (language === "Korean") {
+    selectedParagraphs = koreanParagraphs;
+  }
+
+  const randomText =
+    selectedParagraphs[Math.floor(Math.random() * selectedParagraphs.length)];
+
+  setText(randomText);
+};
+
   const handleTyping = (e) => {
     if (!isStarted) setIsStarted(true);
     setTypedText(e.target.value);
-  };
+   };
 
   // Incorrect count
   useEffect(() => {
@@ -70,7 +98,7 @@ function Home() {
     setTypedText("");
     setTimeLeft(60);
     setIsStarted(false);
-    setIncorrect(0); // Reset incorrect count
+    setIncorrect(0); 
     setWpm(0);
     setAccuracy(0);
   };
@@ -120,20 +148,24 @@ function Home() {
         </div>
         <div className="right-box">
           <div className="language">
-            <select className="language-select">
-              <option value="english">English</option>
-              <option value="spanish">Spanish</option>
-              <option value="french">French</option>
+            <select className="language-select" onChange={handleLanguageChange}>
+              <option value="English">English</option>
+              <option value="Bangla">Bangla</option>
+              <option value="Chinese">Chinese</option>
+               <option value="Korean">Korean</option>
+
             </select>
           </div>
           <div className="Test-Duration">
-            <div>Test Duration:</div>
+            <div>Time Duration:</div>
             <button onClick={() => setTimeLeft(5)}>0:05</button>
             <button onClick={() => setTimeLeft(10)}>0:10</button>
             <button onClick={() => setTimeLeft(20)}>0:20</button>
             <button onClick={() => setTimeLeft(30)}>0:30</button>
             <button onClick={() => setTimeLeft(60)}>1:00</button>
             <button onClick={() => setTimeLeft(60 * 3)}>3:00</button>
+            <button onClick={() => setTimeLeft(60 * 6)}>6:00</button>
+
           </div>
         </div>
       </div>
