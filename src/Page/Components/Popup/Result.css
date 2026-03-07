@@ -1,0 +1,87 @@
+/* Popup background */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 20, 20, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  animation: fadeIn 0.3s ease;
+}
+
+/* Popup card */
+.popup {
+  background: #ffffff;
+  width: 340px;
+  padding: 30px 25px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  animation: scaleIn 0.25s ease;
+}
+
+/* Title */
+.popup h2 {
+  margin-bottom: 18px;
+  font-size: 22px;
+  color: #222;
+}
+
+/* Result numbers */
+.popup p {
+  font-size: 17px;
+  margin: 8px 0;
+  color: #444;
+  font-weight: 500;
+}
+
+/* Highlight numbers */
+.popup p span {
+  font-weight: 700;
+  color: #007bff;
+}
+
+/* Restart button */
+.popup button {
+  margin-top: 20px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.popup button:hover {
+  background: #0056d2;
+  transform: translateY(-1px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

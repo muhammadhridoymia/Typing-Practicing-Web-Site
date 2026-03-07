@@ -40,9 +40,9 @@ body {
 }
 
 .result-box {
+  padding: 1rem;
   background: white;
   border-radius: 20px;
-  padding: 1.5rem;
   display: flex;
   justify-content: space-around;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -79,39 +79,33 @@ body {
 }
 
 .text {
-  font-size: 2rem;
+  font-size: 1.3rem;
   line-height: 1.8;
   color: #2d3748;
   padding: 1.5rem;
   background: #f7fafc;
   border-radius: 15px;
   border-left: 4px solid #667eea;
-  max-height: 200px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #667eea #e2e8f0;
+}
+.plaintext{
+  padding: 2px;
+  background-color: #e8eaed;
+  border-radius: 5px;
 }
 
-.text::-webkit-scrollbar {
-  width: 8px;
-}
 
-.text::-webkit-scrollbar-track {
-  background: #e2e8f0;
-  border-radius: 4px;
-}
-
-.text::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 4px;
-}
 .correct{
   color: #ffffff;
   background-color: #08ad32;
+  border-radius: 10px;
+  padding: 2px;
 }
 .incorrect{
   color: #000000;
   background-color: #e84c4c;
+    border-radius: 10px;
+    padding: 3px;
+
 }
 
 .text-area {
@@ -128,7 +122,7 @@ body {
   border: 2px solid #e2e8f0;
   border-radius: 15px;
   resize: vertical;
-  min-height: 150px;
+  height: 60px;
   font-family: inherit;
   transition: all 0.3s ease;
   background: white;
