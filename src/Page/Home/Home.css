@@ -148,8 +148,9 @@
   height: 60px;
   font-family: inherit;
   transition: all 0.3s ease;
-  color: #000000;
+  color: #070606;
   background: rgba(255, 255, 255, 0.15);
+
 }
 
 .text-input:focus {
@@ -208,11 +209,11 @@
   padding: 1rem;
   font-size: 1rem;
   border: 2px solid #e2e8f0;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(11, 10, 10, 0.15);
   border-radius: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #ffffff;
+  color: #000000;
   font-weight: 500;
 }
 
