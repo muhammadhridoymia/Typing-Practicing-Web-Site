@@ -3,9 +3,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #29b4da;
   color: white;
   height: 40px;
+
+    background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 .nav-bar .nav-links {
   display: flex;

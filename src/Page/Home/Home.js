@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../Components/NavBar/NavBar";
-import Result from "../Components/Popup/Result";
+import ResultPopup from "../Components/Popup/Result";
 import "./Home.css";
+
+//data
 import englishParagraphs from "../../data/English";
 import banglaParagraphs from "../../data/Bangla";
 import chineseParagraphs from "../../data/Chinese";
 import koreanParagraphs from "../../data/Korean";
+import japaneseParagraphs from "../../data/Japan";
 
 function Home() {
-
-  const [text,setText] = useState('')
+  const [Eng] = useState(
+    englishParagraphs[Math.floor(Math.random() * englishParagraphs.length)],
+  );
+  const [BackgroundColor,setBackgroundColor]=useState(true)
+  const [SelectedLang, setSelectedLang] = useState(englishParagraphs);
+  const [text, setText] = useState(Eng);
   const [showPopup, setShowPopup] = useState(false);
   const [typedText, setTypedText] = useState("");
   const [incorrect, setIncorrect] = useState(0);
@@ -18,35 +25,25 @@ function Home() {
   const [wpm, setWpm] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
 
+  const languages = {
+    English: englishParagraphs,
+    Bangla: banglaParagraphs,
+    Chinese: chineseParagraphs,
+    Korean: koreanParagraphs,
+    Japan: japaneseParagraphs,
+  };
 
   const handleLanguageChange = (e) => {
-  const language = e.target.value;
-
-  let selectedParagraphs = [];
-
-  if (language === "Bangla") {
-    selectedParagraphs = banglaParagraphs;
-  } 
-  else if (language === "English") {
-    selectedParagraphs = englishParagraphs;
-  } 
-  else if (language === "Chinese") {
-    selectedParagraphs = chineseParagraphs;
-  } 
-  else if (language === "Korean") {
-    selectedParagraphs = koreanParagraphs;
-  }
-
-  const randomText =
-    selectedParagraphs[Math.floor(Math.random() * selectedParagraphs.length)];
-
-  setText(randomText);
-};
+    const selected = languages[e.target.value];
+    const randomText = selected[Math.floor(Math.random() * selected.length)];
+    setText(randomText);
+    setSelectedLang(selected)
+  };
 
   const handleTyping = (e) => {
     if (!isStarted) setIsStarted(true);
     setTypedText(e.target.value);
-   };
+  };
 
   // Incorrect count
   useEffect(() => {
@@ -69,11 +66,11 @@ function Home() {
       }, 1000);
     } else if (timeLeft === 0) {
       calculateResults();
-      setShowPopup(true)
+      setShowPopup(true);
     }
     if (typedText.length === text.length) {
-      setIsStarted(false)
-      setShowPopup(true)
+      setIsStarted(false);
+      setShowPopup(true);
     }
     return () => clearTimeout(timer);
   }, [isStarted, timeLeft]);
@@ -96,17 +93,27 @@ function Home() {
   // Reset
   const Restart = () => {
     setTypedText("");
-    setTimeLeft(60);
     setIsStarted(false);
-    setIncorrect(0); 
+    setTimeLeft(60)
+    setIncorrect(0);
     setWpm(0);
     setAccuracy(0);
   };
 
   return (
-    <>
-    {showPopup?<Result wpm={wpm} accuracy={accuracy} incorrect={incorrect} setShowPopup={setShowPopup} Restart={Restart}/>:""}
-      <NavBar />
+    <div className={BackgroundColor?"body":"dark-body"}>
+      {showPopup ? (
+        <ResultPopup
+          wpm={wpm}
+          accuracy={accuracy}
+          incorrect={incorrect}
+          setShowPopup={setShowPopup}
+          Restart={Restart}
+        />
+      ) : (
+        ""
+      )}
+      <NavBar setBackgroundColor={setBackgroundColor}/>
       <div className="home-container">
         <div className="left-box">
           <div className="result-box">
@@ -132,12 +139,12 @@ function Home() {
                 })}
               </span>
               <div className="text-area">
-                <textarea
+                <input
                   className="text-input"
                   placeholder="Start typing here..."
                   value={typedText}
                   onChange={handleTyping}
-                  disabled={timeLeft === 0 || typedText.length===text.length}
+                  disabled={timeLeft === 0 || typedText.length === text.length}
                 />
                 <button className="start-button" onClick={Restart}>
                   Restart
@@ -152,9 +159,20 @@ function Home() {
               <option value="English">English</option>
               <option value="Bangla">Bangla</option>
               <option value="Chinese">Chinese</option>
-               <option value="Korean">Korean</option>
-
+              <option value="Korean">Korean</option>
+              <option value="Japan">Japanese</option>
             </select>
+            <div className="paragraph-selector">
+              {SelectedLang.map((data, index) => (
+                <button
+                  key={index}
+                  className={`para-btn ${SelectedLang === index ? "active" : ""}`}
+                  onClick={()=> setText(data)}
+                >
+                  Level {index + 1}
+                </button>
+              ))}
+            </div>
           </div>
           <div className="Test-Duration">
             <div>Time Duration:</div>
@@ -165,11 +183,10 @@ function Home() {
             <button onClick={() => setTimeLeft(60)}>1:00</button>
             <button onClick={() => setTimeLeft(60 * 3)}>3:00</button>
             <button onClick={() => setTimeLeft(60 * 6)}>6:00</button>
-
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-body {
+.body {
   font-family:
     "Inter",
     -apple-system,
@@ -13,6 +13,18 @@ body {
     "Roboto",
     sans-serif;
   background-color: #078da2;
+  min-height: 100vh;
+}
+
+.dark-body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    sans-serif;
+  background-color: #0e0e0f;
   min-height: 100vh;
 }
 
@@ -102,6 +114,9 @@ body {
 }
 .plaintext {
   padding: 2px;
+  
+
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .correct {
@@ -128,13 +143,13 @@ body {
   padding: 1rem 1.5rem;
   font-size: 1.1rem;
   line-height: 1.6;
-  border: 2px solid #e2e8f0;
   border-radius: 15px;
   resize: vertical;
   height: 60px;
   font-family: inherit;
   transition: all 0.3s ease;
-  background: white;
+  color: #000000;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .text-input:focus {
@@ -193,11 +208,11 @@ body {
   padding: 1rem;
   font-size: 1rem;
   border: 2px solid #e2e8f0;
+    background: rgba(255, 255, 255, 0.15);
   border-radius: 15px;
-  background: white;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #4a5568;
+  color: #ffffff;
   font-weight: 500;
 }
 
@@ -213,25 +228,31 @@ body {
 
 .Test-Duration {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
 .Test-Duration div {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: #4a5568;
+  color: #f9f9f9;
   margin-bottom: 0.5rem;
+  background-color: #44b6ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .Test-Duration button {
   padding: 0.8rem;
-  background: white;
+    background: rgba(255, 255, 255, 0.15);
   border: 2px solid #e2e8f0;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 500;
-  color: #4a5568;
+  color: #ffffff;
   cursor: pointer;
   transition: all 0.3s ease;
   margin: 0.25rem 0;
@@ -351,4 +372,39 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.paragraph-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  gap: 1rem;
+  flex-wrap:wrap;
+  margin-top: 20px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.para-btn {
+  width: 70px;
+  min-height: 40px;
+  border: none;
+  margin: 10px;
+  border-radius: 10px;
+  color: white;
+
+    background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+}
+.para-btn:hover {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  transform: translateX(5px);
 }
