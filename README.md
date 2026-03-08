@@ -18,16 +18,16 @@ A web-based typing practice application that helps users improve typing speed an
 ## 🖼 Screenshots
 
 ### Home Screen
-![Home Screen](images/screenshort1.png)
+![Home Screen](images/Screenshot1.png)
 
 ### Typing Practice in Progress
-![Typing Live](images/screenshort2.png)
+![Typing Live](images/Screenshot2.png)
 
 ### Language Selection
-![Live Score](images/screenshort3.png)
+![Live Score](images/Screenshot3.png)
 
 ### Live Score (WPM, Accuracy, Incorrect)
-![Score](images/screenshort4.png)
+![Score](images/Screenshot4.png)
 
 ---
 
