@@ -11,10 +11,21 @@ import koreanParagraphs from "../../data/Korean";
 import japaneseParagraphs from "../../data/Japan";
 
 function Home() {
+  const durations = [
+    { seconds: 5, label: "0:05" },
+    { seconds: 10, label: "0:10" },
+    { seconds: 20, label: "0:20" },
+    { seconds: 30, label: "0:30" },
+    { seconds: 60, label: "1:00" },
+    { seconds: 60 * 3, label: "3:00" },
+    { seconds: 60 * 6, label: "6:00" },
+  ];
   const [Eng] = useState(
     englishParagraphs[Math.floor(Math.random() * englishParagraphs.length)],
   );
-  const [BackgroundColor,setBackgroundColor]=useState(true)
+  const [BackgroundColor, setBackgroundColor] = useState(true);
+  const [level, setlevel] = useState();
+  const [timeUIactive, setUIactive] = useState();
   const [SelectedLang, setSelectedLang] = useState(englishParagraphs);
   const [text, setText] = useState(Eng);
   const [showPopup, setShowPopup] = useState(false);
@@ -37,7 +48,7 @@ function Home() {
     const selected = languages[e.target.value];
     const randomText = selected[Math.floor(Math.random() * selected.length)];
     setText(randomText);
-    setSelectedLang(selected)
+    setSelectedLang(selected);
   };
 
   const handleTyping = (e) => {
@@ -94,14 +105,16 @@ function Home() {
   const Restart = () => {
     setTypedText("");
     setIsStarted(false);
-    setTimeLeft(60)
+    setTimeLeft(60);
     setIncorrect(0);
     setWpm(0);
     setAccuracy(0);
+    setlevel("")
+    setUIactive("")
   };
 
   return (
-    <div className={BackgroundColor?"body":"dark-body"}>
+    <div className={BackgroundColor ? "body" : "dark-body"}>
       {showPopup ? (
         <ResultPopup
           wpm={wpm}
@@ -113,7 +126,7 @@ function Home() {
       ) : (
         ""
       )}
-      <NavBar setBackgroundColor={setBackgroundColor}/>
+      <NavBar setBackgroundColor={setBackgroundColor} />
       <div className="home-container">
         <div className="left-box">
           <div className="result-box">
@@ -166,8 +179,11 @@ function Home() {
               {SelectedLang.map((data, index) => (
                 <button
                   key={index}
-                  className={`para-btn ${SelectedLang === index ? "active" : ""}`}
-                  onClick={()=> setText(data)}
+                  className={`para-btn${level === index ? "-active" : ""}`}
+                  onClick={() => {
+                    setText(data);
+                    setlevel(index);
+                  }}
                 >
                   Level {index + 1}
                 </button>
@@ -176,13 +192,11 @@ function Home() {
           </div>
           <div className="Test-Duration">
             <div>Time Duration:</div>
-            <button onClick={() => setTimeLeft(5)}>0:05</button>
-            <button onClick={() => setTimeLeft(10)}>0:10</button>
-            <button onClick={() => setTimeLeft(20)}>0:20</button>
-            <button onClick={() => setTimeLeft(30)}>0:30</button>
-            <button onClick={() => setTimeLeft(60)}>1:00</button>
-            <button onClick={() => setTimeLeft(60 * 3)}>3:00</button>
-            <button onClick={() => setTimeLeft(60 * 6)}>6:00</button>
+            {durations.map((duration, index) => (
+              <button className={`time-btn${timeUIactive===index?"-active":""}`} key={index} onClick={() => {setTimeLeft(duration.seconds) ;setUIactive(index)}} >
+                {duration.label}
+              </button>
+            ))}
           </div>
         </div>
       </div>

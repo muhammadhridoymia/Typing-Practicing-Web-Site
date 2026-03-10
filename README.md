@@ -1,4 +1,4 @@
-# 🌟 Multi-Language Typing Practice Game
+# Multi-Language Typing Practice Game
 
 A web-based typing practice application that helps users improve typing speed and accuracy in multiple languages. Users can track **live typing performance**, set timers, play **interactive typing games**, and compete for high scores in the top 100 leaderboard.
 

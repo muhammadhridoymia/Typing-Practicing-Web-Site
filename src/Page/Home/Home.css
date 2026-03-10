@@ -73,7 +73,7 @@
   color: #ffffff;
   padding: 0.5rem 1rem;
   border-radius: 10px;
-  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  background:#1698c4;
 }
 
 .result:first-child {
@@ -246,9 +246,22 @@
   border-radius: 10px;
 }
 
-.Test-Duration button {
+.time-btn{
   padding: 0.8rem;
     background: rgba(255, 255, 255, 0.15);
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0.25rem 0;
+}
+
+.time-btn-active{
+  padding: 0.8rem;
+    background:#08ad32;
   border: 2px solid #e2e8f0;
   border-radius: 10px;
   font-size: 1rem;
@@ -408,4 +421,15 @@
   border-color: #667eea;
   background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
   transform: translateX(5px);
+}
+/* Active button style */
+.para-btn-active {
+    width: 70px;
+  min-height: 40px;
+  border: none;
+  margin: 10px;
+  border-radius: 10px;
+  color: white;
+
+    background:#08ad32;
 }
